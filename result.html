@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="result-head"><p class="eyebrow">YOUR PERSONALIZED PLAN</p>
+<h1>Hello, {{ user.name }} 👋</h1><p class="lead">Here is your current FitBuddy plan.</p>
+{% if using_gemini %}<span class="badge ai">Gemini connected</span>{% else %}<span class="badge demo">Demo mode — connect Gemini for live AI</span>{% endif %}
+</section>
+<section class="profile-grid">
+<div><span>User ID</span><strong>{{ user.user_id }}</strong></div><div><span>Age</span><strong>{{ user.age }}</strong></div>
+<div><span>Weight</span><strong>{{ user.weight }} kg</strong></div><div><span>Goal</span><strong>{{ user.goal }}</strong></div>
+<div><span>Intensity</span><strong>{{ user.intensity|title }}</strong></div>
+</section>
+<section class="card plan-card"><div class="section-title"><h2>{% if workout.updated_plan %}Updated Workout Plan{% else %}7-Day Workout Plan{% endif %}</h2>
+<a class="btn small" href="/feedback/{{ user.user_id }}">Give Feedback</a></div>
+{% if workout.updated_plan %}<h3>Latest updated plan</h3><pre>{{ workout.updated_plan }}</pre>
+<details><summary>Show original plan</summary><pre>{{ workout.original_plan }}</pre></details>
+{% else %}<pre>{{ workout.original_plan }}</pre>{% endif %}
+</section>
+<section class="card tip-card"><h2>Nutrition / Recovery Tip</h2><p>{{ workout.nutrition_tip }}</p></section>
+<div class="actions"><a class="btn secondary" href="/">Create another plan</a><a class="btn secondary" href="/feedback/{{ user.user_id }}">Update this plan</a></div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="narrow"><p class="eyebrow">ADAPT YOUR PLAN</p><h1>Share your feedback</h1>
+<p class="lead">Tell FitBuddy what you want changed. The AI will create a complete revised 7-day plan.</p>
+<div class="mini-profile"><strong>{{ user.name }}</strong><span>User ID: {{ user.user_id }} · Goal: {{ user.goal }} · Intensity: {{ user.intensity|title }}</span></div>
+<form action="/submit-feedback" method="post" class="card"><input type="hidden" name="user_id" value="{{ user.user_id }}">
+<label>Your feedback<textarea name="feedback" rows="7" maxlength="2000" required placeholder="Example: I want more recovery time and less jumping."></textarea></label>
+<button type="submit" class="btn">Update My Plan →</button></form>
+<section class="card"><h2>Current plan</h2><pre>{{ workout.updated_plan or workout.original_plan }}</pre></section>
+</section>
+{% endblock %}

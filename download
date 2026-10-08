@@ -1,0 +1,7 @@
+GEMINI_API_KEY=
+GEMINI_PLAN_MODEL=gemini-3.8-flash
+GEMINI_TIP_MODEL=gemini-3.8-flash
+GEMINI_UPDATE_MODEL=gemini-3.8-flash
+ALLOW_DEMO_MODE=true
+DATABASE_URL=sqlite:///./fitbuddy.db
+ADMIN_PASSWORD=

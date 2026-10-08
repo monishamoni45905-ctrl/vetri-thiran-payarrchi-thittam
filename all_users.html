@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="result-head"><p class="eyebrow">ADMIN / DEVELOPMENT VIEW</p><h1>All Users & Workout Plans</h1>
+<p class="lead">Local dashboard for reviewing stored FitBuddy records.</p></section>
+{% if rows %}<div class="table-wrap"><table><thead><tr><th>ID</th><th>Name</th><th>Age</th><th>Weight</th><th>Goal</th><th>Intensity</th><th>Plans</th></tr></thead><tbody>
+{% for row in rows %}<tr><td>{{ row.user.user_id }}</td><td>{{ row.user.name }}</td><td>{{ row.user.age }}</td><td>{{ row.user.weight }} kg</td>
+<td>{{ row.user.goal }}</td><td>{{ row.user.intensity|title }}</td><td>{% if row.plan %}<details><summary>View plans</summary>
+<h4>Original</h4><pre>{{ row.plan.original_plan }}</pre>{% if row.plan.updated_plan %}<h4>Updated</h4><pre>{{ row.plan.updated_plan }}</pre>{% endif %}
+<p><a href="/feedback/{{ row.user.user_id }}">Update plan</a></p></details>{% else %}No plan{% endif %}</td></tr>{% endfor %}
+</tbody></table></div>{% else %}<section class="card"><p>No users yet. Generate a plan from the home page.</p></section>{% endif %}
+{% endblock %}
